@@ -13,18 +13,21 @@ tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 @tool
 def web_search(query:str)->str:
     """Searches the most recent and reliable information about a topic and returns the urls, title and snippets"""
-    resuluts=tavily.search(
+    results=tavily.search(
         query=query,
         max_results=5
     )
 
     out=[]
-    for r in resuluts['results']:
+    for r in results['results']:
         out.append(
-            f"TITLE:{r['title']}\nURL{r['url']}\nSNIPPET:{r['content'][:3000]}\n"
-        )
+        f"TITLE: {r['title']}\n\n"
+        f"URL: {r['url']}\n\n"
+        f"SNIPPET:\n{r['content'][:300]}\n"
+        f"{'-'*60}"
+    )
 
-    return "\n_\n".join(out)
+    return "\n\n".join(out)
 @tool
 def web_scrape(url:str)->str:
     """Scrapes the urls and extract the information in readeing format for deeper reading"""
