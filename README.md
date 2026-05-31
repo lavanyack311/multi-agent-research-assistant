@@ -100,6 +100,7 @@ Processes the collected information and generates a structured research report c
 * Key Findings
 * Takeaways
 * Conclusion
+* sources
 
 ### Critic Chain
 
